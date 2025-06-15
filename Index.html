@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interactive Boxes</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #fff;
+      margin: 0;
+      padding: 2rem;
+      display: flex;
+      justify-content: center;
+    }
+    .container {
+      max-width: 400px;
+      width: 100%;
+    }
+    .box {
+      border: 2px solid #f7a5b7;
+      padding: 1rem;
+      border-radius: 8px;
+      margin-bottom: 1rem;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+    .box.popular {
+      border: 3px solid #f7618b;
+      position: relative;
+    }
+    .box.popular::before {
+      content: "MOST POPULAR";
+      position: absolute;
+      top: -12px;
+      right: -12px;
+      background-color: #f7618b;
+      color: white;
+      font-size: 0.7rem;
+      padding: 2px 6px;
+      border-radius: 4px;
+    }
+    .offer {
+      font-size: 0.8rem;
+      color: white;
+      background-color: #f7618b;
+      padding: 2px 6px;
+      border-radius: 4px;
+      margin-left: 0.5rem;
+    }
+    .title {
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+    }
+    .details {
+      display: none;
+      margin-top: 0.5rem;
+    }
+    .details select {
+      margin-right: 0.5rem;
+      margin-top: 0.5rem;
+    }
+    .total, .delivery, .button {
+      text-align: center;
+      margin-top: 1rem;
+    }
+    .button button {
+      background-color: #f7618b;
+      color: white;
+      border: none;
+      padding: 0.75rem 1rem;
+      width: 100%;
+      font-size: 1rem;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    .price-section {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .old-price {
+      text-decoration: line-through;
+      font-size: 0.8rem;
+      color: #aaa;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="box" onclick="toggleDetails(this)">
+      <div class="price-section">
+        <div>
+          <span class="title">1 Unit</span>
+          <span class="offer">10% Off</span>
+        </div>
+        <div>
+          <strong>$10.00 USD</strong><br>
+          <span class="old-price">$20.00 USD</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="box popular" onclick="toggleDetails(this)">
+      <div class="price-section">
+        <div>
+          <span class="title">2 Unit</span>
+          <span class="offer">20% Off</span>
+        </div>
+        <div>
+          <strong>$18.00 USD</strong>
+        </div>
+      </div>
+      <div class="details">
+        <div>
+          <label>#1 </label>
+          <select>
+            <option>S</option>
+            <option>M</option>
+            <option>L</option>
+          </select>
+          <select>
+            <option>Black</option>
+            <option>White</option>
+            <option>Blue</option>
+          </select>
+        </div>
+        <div>
+          <label>#2 </label>
+          <select>
+            <option>S</option>
+            <option>M</option>
+            <option>L</option>
+          </select>
+          <select>
+            <option>Colour</option>
+            <option>Black</option>
+            <option>White</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div class="box" onclick="toggleDetails(this)">
+      <div class="price-section">
+        <div>
+          <span class="title">3 Unit</span>
+          <span class="offer">30% Off</span>
+        </div>
+        <div>
+          <strong>$24.00 USD</strong><br>
+          <span class="old-price">$30.00 USD</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="delivery">
+      <span style="color: #f7618b; font-weight: bold;">Free Delivery</span>
+    </div>
+    <div class="total">
+      <strong>Total : $18.00 USD</strong>
+    </div>
+    <div class="button">
+      <button>+ Add to Cart</button>
+    </div>
+  </div>
+
+  <script>
+    function toggleDetails(el) {
+      // Close others
+      document.querySelectorAll('.details').forEach(detail => {
+        if (!el.contains(detail)) {
+          detail.style.display = 'none';
+        }
+      });
+
+      // Toggle clicked one
+      const details = el.querySelector('.details');
+      if (details) {
+        details.style.display = details.style.display === 'block' ? 'none' : 'block';
+      }
+    }
+  </script>
+</body>
+</html>
